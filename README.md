@@ -1,66 +1,79 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gestion des Livres - Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Une application web pour la gestion des livres avec des fonctionnalités CRUD protégées par une authentification.
 
-## About Laravel
+## Fonctionnalités
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Authentification des utilisateurs.
+- CRUD complet pour les livres : ajout, modification, visualisation, suppression.
+- Gestion des utilisateurs avec inscription, connexion, et réinitialisation de mot de passe.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Table `books`
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Les champs de la table `books` :
+- `title` : Titre du livre (string).
+- `description` : Description du livre (text).
+- `author` : Auteur du livre (string).
+- `cover_image` : Image de couverture (string).
+- `nb_pages` : Nombre de pages (integer).
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Cloner le dépôt :**
+   ```bash
+   git clone https://github.com/SOULEYMANEHAMANEADJI/gestionLivresDITI4S4.git
+   cd gestion-livres-laravel
+   ```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. **Installer les dépendances :**
+   ```bash
+   composer install
+   npm install
+   npm run dev
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. **Configurer l'environnement :**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## Laravel Sponsors
+4. **Exécuter les migrations :**
+   ```bash
+   php artisan migrate
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+5. **Lancer le serveur :**
+   ```bash
+   php artisan serve
+   ```
 
-### Premium Partners
+## Utilisation
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Authentification
 
-## Contributing
+Les utilisateurs doivent se connecter pour accéder aux fonctionnalités CRUD des livres. Les routes d'authentification sont les suivantes :
+- `GET /login` : Afficher le formulaire de connexion.
+- `POST /login` : Se connecter.
+- `POST /logout` : Se déconnecter.
+- `GET /register` : Afficher le formulaire d'inscription.
+- `POST /register` : S'inscrire.
+- `GET /password/reset` : Afficher le formulaire de réinitialisation de mot de passe.
+- `POST /password/email` : Envoyer le lien de réinitialisation.
+- `POST /password/reset` : Réinitialiser le mot de passe.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Gestion des Livres
 
-## Code of Conduct
+- `GET /books` : Lister tous les livres.
+- `GET /books/create` : Afficher le formulaire de création d'un nouveau livre.
+- `POST /books` : Enregistrer un nouveau livre.
+- `GET /books/{book}` : Afficher les détails d'un livre spécifique.
+- `GET /books/{book}/edit` : Afficher le formulaire d'édition d'un livre.
+- `PUT /books/{book}` : Mettre à jour un livre existant.
+- `DELETE /books/{book}` : Supprimer un livre.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Contribution
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Les contributions sont les bienvenues via les issues du dépôt.
+--
+## MineHAS
